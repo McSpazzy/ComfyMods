@@ -20,12 +20,10 @@ using static PluginConfig;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 [BepInDependency(Jotunn.Main.ModGuid, Jotunn.Main.Version)]
-public class PotteryBarn : BaseUnityPlugin {
+public sealed class PotteryBarn : BaseUnityPlugin {
   public const string PluginGuid = "redseiko.valheim.potterybarn";
   public const string PluginName = "PotteryBarn";
-  public const string PluginVersion = "1.13.0";
-
-  Harmony _harmony;
+  public const string PluginVersion = "1.14.0";
 
   static Piece.PieceCategory _hammerCreatorShopCategory;
   static Piece.PieceCategory _hammerBuildingCategory;
@@ -40,11 +38,7 @@ public class PotteryBarn : BaseUnityPlugin {
     BindConfig(Config);
     PieceManager.OnPiecesRegistered += AddPieces;
 
-    _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
-  }
-
-  void OnDestroy() {
-    _harmony?.UnpatchSelf();
+    Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
   }
 
   public static void AddPieces() {
@@ -139,7 +133,7 @@ public class PotteryBarn : BaseUnityPlugin {
 
   static void ResizePieceTableCategories(PieceTable pieceTable, int pieceCategoryMax) {
     while (pieceTable.m_availablePieces.Count < pieceCategoryMax) {
-      pieceTable.m_availablePieces.Add(new());
+      pieceTable.m_availablePieces.Add([]);
     }
 
     Array.Resize(ref pieceTable.m_selectedPiece, pieceCategoryMax);

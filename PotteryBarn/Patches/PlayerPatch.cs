@@ -26,7 +26,7 @@ static class PlayerPatch {
                         typeof(UnityEngine.Object),
                         nameof(UnityEngine.Object.Instantiate),
                         genericParameterCount: 1,
-                        new Type[] { typeof(Type) })
+                        [typeof(Type)])
                     .MakeGenericMethod(typeof(GameObject))),
             new CodeMatch(OpCodes.Stfld, AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost))))
         .ThrowIfInvalid("Could not patch Player.SetupPlacementGhost()! (m_placementGhost)")
