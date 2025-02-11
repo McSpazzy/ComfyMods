@@ -16,8 +16,8 @@ static class PiecePatch {
         && !__instance.TryGetComponent(out Plant _)) {
       __instance.m_nview.m_zdo.Set(ZDOVars.s_health, TargetPieceHealth.Value);
 
-      if (EnableStabilityOverride.Value) {
-        WearNTearManager.SetNoSupportWear(__instance);
+      if (IgnoreStabilityChecks.Value && __instance.TryGetComponent(out WearNTear wearNTear)) {
+        WearNTearManager.SetNoSupportWear(wearNTear);
       }
     }
   }

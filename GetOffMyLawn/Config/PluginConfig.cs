@@ -9,7 +9,7 @@ public static class PluginConfig {
 
   public static ConfigEntry<float> TargetPieceHealth { get; private set; }
   public static ConfigEntry<bool> RepairPiecesOnWardActivation { get; private set; }
-  public static ConfigEntry<bool> EnableStabilityOverride { get; private set; }
+  public static ConfigEntry<bool> IgnoreStabilityChecks { get; private set; }
 
   public static ConfigEntry<bool> EnablePieceHealthDamageThreshold { get; private set; }
 
@@ -36,14 +36,14 @@ public static class PluginConfig {
             "Behaviour",
             "repairPiecesOnWardActivation",
             true,
-            "IF set, will repair all Pieces in Ward range when a Ward is activated.");
+            "If set, will repair all Pieces in Ward range when a Ward is activated.");
 
-    EnableStabilityOverride =
+    IgnoreStabilityChecks =
       config.BindInOrder(
         "Behaviour",
-        "enableStablePieces",
-        true,
-        "IF set, all build pieces will always have max stability.");
+        "ignoreStabilityChecks",
+        false,
+        "When true, any prefabs placed will have data set to permanently ignore stability checks.");
 
     EnablePieceHealthDamageThreshold =
         config.BindInOrder(
