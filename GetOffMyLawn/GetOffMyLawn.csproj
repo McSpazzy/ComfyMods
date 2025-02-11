@@ -97,6 +97,7 @@
     <Compile Include="ComfyLib\Extensions\ConfigFileExtensions.cs" />
     <Compile Include="ComfyLib\Extensions\UnityExtensions.cs" />
     <Compile Include="Core\PieceUtils.cs" />
+    <Compile Include="Core\WearNTearManager.cs" />
     <Compile Include="GetOffMyLawn.cs" />
     <Compile Include="Patches\BaseAIPatch.cs" />
     <Compile Include="Patches\MonsterAIPatch.cs" />
